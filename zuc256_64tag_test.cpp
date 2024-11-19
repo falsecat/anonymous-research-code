@@ -260,13 +260,13 @@ int main() {
 				IV[i] = rand() % 256;
 			}
 			Initialization(K,IV);
-			int len=(L+62)/64+1;
+			int len=(L+62)/64+1+2;
 			u32 Kstream[len];
 			GenerateKeystream(Kstream,len);
 			int z[len*64],count=0;
 			for(int i=0; i<len; i++) {
 				for (int j = 63; j >= 0; j--) {
-					z[count++] = (Kstream[i] >> j) & 1;
+					z[count++] = (Kstream[i+2] >> j) & 1;
 				}
 			}
 			for(int i=0; i<64; i++) {
